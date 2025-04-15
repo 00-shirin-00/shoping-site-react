@@ -3,6 +3,7 @@ import React from 'react'
 import { CssBaseline } from '@mui/material'
 // components
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 //route
 import { Route, Routes ,Navigate} from 'react-router-dom'
 //redux
@@ -37,6 +38,7 @@ export default function App() {
         <Route path='/product-details/:id/:name' element={<ProductDetails/> } />
         <Route path='*' element={<NotFound/> } />
       </Routes>
+      <Footer/>
       <Toaster/>
     </>
   )
