@@ -14,13 +14,13 @@ const PORT = process.env.PORT || 5000;
 mongoose
   .connect(process.env.DATA_BASE_URI)
   .then(() => {
-    console.log("اتصال به پایگاه داده با موفقیت انجام شد"); // پیام موفقیت‌آمیز بودن اتصال به پایگاه داده
+    console.log("DataBase Connected"); // پیام موفقیت‌آمیز بودن اتصال به پایگاه داده
   })
   .catch((err) => console.log(err)); // مدیریت خطا در صورت عدم موفقیت در اتصال
 
 // راه‌اندازی سرور و گوش دادن به پورت مشخص‌شده
 app.listen(PORT, () => {
-  console.log(`سرور روی پورت ${PORT} در حال اجرا است`); // پیام موفقیت‌آمیز بودن راه‌اندازی سرور
+  console.log(`Server is running on port ${PORT} `); // پیام موفقیت‌آمیز بودن راه‌اندازی سرور
 });
 
 // توضیح:
