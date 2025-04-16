@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import notify from "../../../Utils/notify";
 
 // Import Swiper React components
@@ -12,7 +12,8 @@ import "swiper/css/navigation";
 import "./style.css";
 
 // import required modules
-import { Pagination, Navigation } from "swiper/modules";import { Box } from "@mui/material";
+import { Pagination, Navigation,Autoplay } from "swiper/modules";
+import { Box } from "@mui/material";
 
 export default function Banner() {
   //state for slider
