@@ -1,19 +1,27 @@
-import dotenv from "dotenv";
-import mongoose from "mongoose";
+// وارد کردن کتابخانه‌های مورد نیاز
+import dotenv from "dotenv"; // برای مدیریت متغیرهای محیطی
+import mongoose from "mongoose"; // برای اتصال به پایگاه داده MongoDB
 
-import app from "./app.js";
+import app from "./app.js"; // وارد کردن اپلیکیشن اصلی
 
+// بارگذاری متغیرهای محیطی از فایل .env
 dotenv.config();
 
+// تعیین پورت سرور از متغیر محیطی یا مقدار پیش‌فرض 5000
 const PORT = process.env.PORT || 5000;
 
+// اتصال به پایگاه داده MongoDB با استفاده از URI موجود در متغیر محیطی
 mongoose
   .connect(process.env.DATA_BASE_URI)
   .then(() => {
-    console.log("DataBase Connected");
+    console.log("اتصال به پایگاه داده با موفقیت انجام شد"); // پیام موفقیت‌آمیز بودن اتصال به پایگاه داده
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(err)); // مدیریت خطا در صورت عدم موفقیت در اتصال
 
+// راه‌اندازی سرور و گوش دادن به پورت مشخص‌شده
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`سرور روی پورت ${PORT} در حال اجرا است`); // پیام موفقیت‌آمیز بودن راه‌اندازی سرور
 });
+
+// توضیح:
+// این فایل مسئول راه‌اندازی سرور و اتصال به پایگاه داده است. ابتدا متغیرهای محیطی بارگذاری می‌شوند، سپس تلاش می‌شود تا به پایگاه داده متصل شود. در صورت موفقیت، سرور روی پورت مشخص‌شده شروع به کار می‌کند و آماده پاسخگویی به درخواست‌ها می‌شود.
