@@ -58,7 +58,14 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function Register({ handlePageType }) {
-  const handleSubmit = (event) => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();//نرم خصوصیتی مخصوص به فرم است که از ارسال فرم جلوگیری میکند
+    const data = new FormData(event.currentTarget);
+    const email = data.get("email");
+
+
+
+  };
 
   return (
     <>

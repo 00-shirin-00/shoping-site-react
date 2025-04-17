@@ -42,7 +42,7 @@ export default function App() {
             element={!token ? <Navigate to={"/auth"} /> : <Cart />}
           />
           <Route path="/category" element={<Category />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/product" element={<Products />} />
           <Route
             path="/product-details/:id/:name"
             element={<ProductDetails />}
