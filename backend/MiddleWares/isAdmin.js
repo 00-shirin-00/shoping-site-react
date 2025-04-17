@@ -4,17 +4,6 @@ import jwt from "jsonwebtoken";
 
 const isAdmin = catchAsync(async (req, res, next) => {
   try {
-
-
-    // //<<<------------------------->>
-    //   if (!req.headers.authorization) {
-    //     return next(new HandleError("Authorization header is missing", 401));
-    //   }
-    
-
-
-
-    
     const { role } = jwt.verify(
       req.headers.authorization.split(" ")[1],
       process.env.JWT_SECRET

@@ -1,4 +1,3 @@
-
 // import { useState } from "react";
 // import * as React from "react";
 
@@ -20,6 +19,10 @@ import { styled } from "@mui/material/styles";
 import useFormFields from "../../../Utils/useFormFields";
 import notify from "../../../Utils/notify";
 
+
+
+//redux>>
+import { useDispatch } from "react-redux";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -64,42 +67,44 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function Register({ handlePageType }) {
-const [fields, handleChange] = useFormFields();
+  const [fields, handleChange] = useFormFields();
 
+  //dispatch
+  const dispatch = useDispatch();
 
   //handlePageType is a function that is passed as a prop to the Register component. It is used to switch between the login and register pages.
-  const handleSubmit =async (event) => {
-    event.preventDefault();//نرم خصوصیتی مخصوص به فرم است که از ارسال فرم جلوگیری میکند
+  const handleSubmit = async (event) => {
+    event.preventDefault(); //نرم خصوصیتی مخصوص به فرم است که از ارسال فرم جلوگیری میکند
     try {
       //fetching data from the API
-      const response = await fetch(import.meta.env.VITE_BASE_API+'auth/signup', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(fields),
-      });
+      const response = await fetch(
+        import.meta.env.VITE_BASE_API + "auth/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(fields),
+        }
+      );
       //date
       const data = await res.json();
       //check if the data is ok by success property
       if (data?.success) {
         //notify message
         notify("success", data.message);
-        
+
         //if the data is ok, redirect to the login page
-        handlePageType("login");
+        handlePageType();
       } else {
         //if the data is not ok, show the error message
         notify("error", data.message);
       }
-  
     } catch (error) {
       //if there is an error, show the error message
       notify("error", "Something went wrong. Please try again later.");
     }
-  
-}
-
+  };
 
   // };
 
@@ -137,7 +142,7 @@ const [fields, handleChange] = useFormFields();
                 required
                 fullWidth
                 variant="outlined"
-                sx={{ariaLable:"email"}}
+                sx={{ ariaLable: "email" }}
               />
             </FormControl>
             <FormControl>
@@ -152,13 +157,13 @@ const [fields, handleChange] = useFormFields();
                 required
                 fullWidth
                 variant="outlined"
-                sx={{ariaLable:"username"}}
+                sx={{ ariaLable: "username" }}
               />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="password">Password</FormLabel>
               <TextField
-                onChange={handleChange} 
+                onChange={handleChange}
                 name="password"
                 placeholder="••••••"
                 type="password"

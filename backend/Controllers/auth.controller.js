@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 export const signup = catchAsync(async (req, res, next) => {
   const { username = null, password = null ,email=null} = req.body;
 
+  
   if (password?.length < 4) {
     return next(new HandleError("must be 4 character at least"));
   }
@@ -22,8 +23,15 @@ export const signup = catchAsync(async (req, res, next) => {
 
 export const signin = catchAsync(async (req, res, next) => {
   const { username, password } = req.body;
+
+  // لاگ‌گذاری ورودی‌های درخواست
+  console.log("Signin Request Body:", req.body);
+
   const validUser = await User.findOne({ username });
   if (!validUser) return next(new HandleError("user not found", 404));
+
+  // لاگ‌گذاری رمز عبور هش شده از دیتابیس
+  console.log("Hashed Password from DB:", validUser.password);
 
   const validPassword = bcryptjs.compareSync(password, validUser.password);
 
@@ -36,6 +44,9 @@ export const signin = catchAsync(async (req, res, next) => {
   );
 
   const { password: pw, ...userInfo } = validUser._doc;
+
+  // لاگ‌گذاری موفقیت ورود
+  console.log("User logged in successfully:", userInfo);
 
   return res.status(200).json({
     success: true,

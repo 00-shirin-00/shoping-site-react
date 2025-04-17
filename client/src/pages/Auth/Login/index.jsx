@@ -2,9 +2,9 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
-import CssBaseline from "@mui/material/CssBaseline";
+// import CssBaseline from "@mui/material/CssBaseline";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Divider from "@mui/material/Divider";
+// import Divider from "@mui/material/Divider";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import Link from "@mui/material/Link";
@@ -14,6 +14,15 @@ import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 
+//utils>>
+import useFormFields from "../../../Utils/useFormFields";
+import notify from "../../../Utils/notify";
+
+
+//redux>>
+import { useDispatch } from "react-redux";
+
+import { login } from "../../../Store/Slice/AuthSlice";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -57,8 +66,38 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export default function Login({ handlePageType }) {
-  const handleSubmit = (event) => {};
+export default function login({ handlePageType }) {
+  const [fields, handleChange] = useFormFields();
+
+  //dispatch
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      //fetch auth signin
+      const res = await fetch(import.meta.env.VITE_BASE_API + "auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(fields),
+      });
+      const data = await res.json();
+      //check if the response is ok
+      if (data?.success) {
+        //dispatch login action
+        notify("success", data?.message);
+        dispatch(login({ token: data.data.token, user: data.data.user }));
+      }
+      //handle error
+      else {
+        notify("error", data?.message);
+      }
+    } catch (error) {
+      notify("error", error.message || "Something went wrong, again later.");
+    }
+  };
 
   return (
     <>
@@ -83,23 +122,26 @@ export default function Login({ handlePageType }) {
             }}
           >
             <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="username">Username</FormLabel>
               <TextField
-                id="email"
-                type="email"
-                name="email"
-                placeholder="your@email.com"
-                autoComplete="email"
+                onChange={handleChange}
+                id="username"
+                type="username"
+                name="username"
+                placeholder="enter username ..."
+                autoComplete="username"
                 autoFocus
                 required
                 fullWidth
                 variant="outlined"
                 color="primary"
+                sx={{ ariaLabel: "username" }}
               />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="password">Password</FormLabel>
               <TextField
+                onChange={handleChange}
                 name="password"
                 placeholder="••••••"
                 type="password"
@@ -116,11 +158,7 @@ export default function Login({ handlePageType }) {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-            >
+            <Button type="submit" fullWidth variant="contained">
               LOgin
             </Button>
             <Link
