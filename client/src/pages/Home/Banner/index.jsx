@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 import "./style.css";
 
 // import required modules
-import { Pagination, Navigation,Autoplay } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { Box } from "@mui/material";
 
 export default function Banner() {
@@ -40,21 +40,28 @@ export default function Banner() {
 
   return (
     <Box sx={{ width: "100%", height: "80vh" }}>
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={30}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        autoplay={true}
-        modules={[Pagination, Navigation, Autoplay]}
-        className="banner"
-      >
-        {items}
-      </Swiper>
+      {sliders?.length > 0 ? (
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={30}
+          loop={sliders.length > 1} // اگر تعداد اسلایدها بیشتر از 1 باشد، حلقه فعال می‌شود
+          centeredSlides={true} // اسلاید فعلی در وسط قرار می‌گیرد
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          autoplay={{
+            delay: 3000, // زمان تأخیر بین اسلایدها (به میلی‌ثانیه)
+            disableOnInteraction: false, // چرخش ادامه پیدا کند حتی پس از تعامل کاربر
+          }}
+          modules={[Pagination, Navigation, Autoplay]}
+          className="banner"
+        >
+          {items}
+        </Swiper>
+      ) : (
+        <p>Loading...</p> // پیام یا لودر در صورت نبود اسلاید
+      )}
     </Box>
   );
 }
-

@@ -1,10 +1,12 @@
-import * as React from "react";
+
+// import { useState } from "react";
+// import * as React from "react";
+
+//material >>
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
-import CssBaseline from "@mui/material/CssBaseline";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Divider from "@mui/material/Divider";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import Link from "@mui/material/Link";
@@ -13,6 +15,10 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
+
+//utils>>
+import useFormFields from "../../../Utils/useFormFields";
+import notify from "../../../Utils/notify";
 
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -58,14 +64,44 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function Register({ handlePageType }) {
-  const handleSubmit = (event) => {
+const [fields, handleChange] = useFormFields();
+
+
+  //handlePageType is a function that is passed as a prop to the Register component. It is used to switch between the login and register pages.
+  const handleSubmit =async (event) => {
     event.preventDefault();//نرم خصوصیتی مخصوص به فرم است که از ارسال فرم جلوگیری میکند
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email");
+    try {
+      //fetching data from the API
+      const response = await fetch(import.meta.env.VITE_BASE_API+'auth/signup', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(fields),
+      });
+      //date
+      const data = await res.json();
+      //check if the data is ok by success property
+      if (data?.success) {
+        //notify message
+        notify("success", data.message);
+        
+        //if the data is ok, redirect to the login page
+        handlePageType("login");
+      } else {
+        //if the data is not ok, show the error message
+        notify("error", data.message);
+      }
+  
+    } catch (error) {
+      //if there is an error, show the error message
+      notify("error", "Something went wrong. Please try again later.");
+    }
+  
+}
 
 
-
-  };
+  // };
 
   return (
     <>
@@ -81,7 +117,6 @@ export default function Register({ handlePageType }) {
           <Box
             component="form"
             onSubmit={handleSubmit}
-            noValidate
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -92,6 +127,7 @@ export default function Register({ handlePageType }) {
             <FormControl>
               <FormLabel htmlFor="email">Email</FormLabel>
               <TextField
+                onChange={handleChange}
                 id="email"
                 type="email"
                 name="email"
@@ -107,6 +143,7 @@ export default function Register({ handlePageType }) {
             <FormControl>
               <FormLabel htmlFor="username">Username</FormLabel>
               <TextField
+                onChange={handleChange}
                 id="username"
                 type="text"
                 name="username"
@@ -121,6 +158,7 @@ export default function Register({ handlePageType }) {
             <FormControl>
               <FormLabel htmlFor="password">Password</FormLabel>
               <TextField
+                onChange={handleChange} 
                 name="password"
                 placeholder="••••••"
                 type="password"
