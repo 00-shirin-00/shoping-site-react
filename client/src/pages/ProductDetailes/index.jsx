@@ -21,15 +21,14 @@ export default function ProductDetails() {
   //state>>
   const [product, setProduct] = useState(); //get product from api
 
-  //use redux's actions
-  const dispatch = useDispatch(); //use dispatch to send action to redux
-
+  
   //selectors>>
   // quantity
-  const cardQuantity = useSelector((state) => state.cart.items).filter(
-    (e) => e._id == id
-  )[0]?.quantity || 0; //get quantity from redux
-
+  const cardQuantity =
+  useSelector((state) => state.cart.items).filter((e) => e._id == id)[0]
+  ?.quantity || 0; //get quantity from redux 
+  
+  
   //useEffect>>
   useEffect(() => {
     (async () => {
@@ -40,16 +39,22 @@ export default function ProductDetails() {
         const data = await response.json();
         setProduct(data.data); //set product to state
         // console.log(data)
+        // console.log(add)
+        // console.log(remove);
+        
       } catch (error) {
         console.log(error);
       }
     })();
   }, [id]);
-
+  
+  //use redux's actions
+  const dispatch = useDispatch(); //use dispatch to send action to redux
   return (
     <>
       {
         /* Product Details Page */ product ? (
+          
           <>
             {/* eleman */}
             <Stack
@@ -113,6 +118,8 @@ export default function ProductDetails() {
                   </Typography>
                 </Box>
                 <Box display={"flex"} gap={2}>
+                  {/* -----------------------button for add to card ------------------------------------------- */}
+                  {/* //if quantity is 0 show add to card button else show remove and add button >> */}
                   {cardQuantity ? (
                     <>
                       <Button
@@ -130,6 +137,8 @@ export default function ProductDetails() {
                       </Button>
                     </>
                   ) : (
+                      
+                      // else >> 
                     <Button
                       variant="contained"
                       onClick={() => dispatch(add(product))}
