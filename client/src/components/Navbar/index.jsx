@@ -106,11 +106,19 @@ export default function Navbar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
             >
-              {/* {pages.map((page) => (
+              {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+                  <Typography sx={{ textAlign: "center" }}>
+                    {" "}
+                    <Link
+                      to={`/${page.toLowerCase()}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {page}
+                    </Link>
+                  </Typography>
                 </MenuItem>
-              ))} */}
+              ))}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -146,7 +154,10 @@ export default function Navbar() {
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              <Link to={"/products"} style={{ color: "white" }}>
+              <Link
+                to={"/products/all/all-category"}
+                style={{ color: "white" }}
+              >
                 Products
               </Link>
             </Button>

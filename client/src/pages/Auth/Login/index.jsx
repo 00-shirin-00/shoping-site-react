@@ -1,10 +1,8 @@
-import * as React from "react";
+//mui>>
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
-// import CssBaseline from "@mui/material/CssBaseline";
 import FormControlLabel from "@mui/material/FormControlLabel";
-// import Divider from "@mui/material/Divider";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import Link from "@mui/material/Link";
@@ -21,9 +19,9 @@ import notify from "../../../Utils/notify";
 
 //redux>>
 import { useDispatch } from "react-redux";
+// ===============================================================
 
-import { login } from "../../../Store/Slice/AuthSlice";
-
+//themes>>------------------------------------------
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -65,7 +63,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
     }),
   },
 }));
-
+// -------------------------------------------------
 export default function login({ handlePageType }) {
   const [fields, handleChange] = useFormFields();
 
