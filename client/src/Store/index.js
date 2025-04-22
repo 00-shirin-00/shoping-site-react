@@ -13,6 +13,7 @@ const store = configureStore({
     auth: authSliceReducer, // اضافه کردن reducer احراز هویت به استور
     cart: CartSlice, // اضافه کردن reducer سبد خرید به استور
   },
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 export default store; // صادر کردن استور برای استفاده در فایل‌های دیگر

@@ -5,7 +5,7 @@ import toast from "react-hot-toast"; // برای نمایش اعلان‌ها ب
 const notify = (type, message) => {
   toast[type](message, {
     // نوع اعلان و پیام را مشخص می‌کند
-    duration: 2000, // مدت زمان نمایش اعلان (2 ثانیه)
+    duration: 5000, // مدت زمان نمایش اعلان (2 ثانیه)
     position: "top-center", // موقعیت نمایش اعلان (بالای مرکز صفحه)
   });
 };

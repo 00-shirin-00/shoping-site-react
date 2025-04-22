@@ -1,6 +1,3 @@
-// import { useState } from "react";
-// import * as React from "react";
-
 //material >>
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -19,10 +16,8 @@ import { styled } from "@mui/material/styles";
 import useFormFields from "../../../Utils/useFormFields";
 import notify from "../../../Utils/notify";
 
-
-
 //redux>>
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -65,18 +60,21 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
     }),
   },
 }));
+// ===============================================================
 
 export default function Register({ handlePageType }) {
   const [fields, handleChange] = useFormFields();
 
   //dispatch
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
+  // ------------------------------------------------------------------
   //handlePageType is a function that is passed as a prop to the Register component. It is used to switch between the login and register pages.
   const handleSubmit = async (event) => {
     event.preventDefault(); //نرم خصوصیتی مخصوص به فرم است که از ارسال فرم جلوگیری میکند
+
+    //fetching data from the API >>>>>
     try {
-      //fetching data from the API
       const response = await fetch(
         import.meta.env.VITE_BASE_API + "auth/signup",
         {
@@ -87,26 +85,30 @@ export default function Register({ handlePageType }) {
           body: JSON.stringify(fields),
         }
       );
-      //date
-      const data = await res.json();
+      //date>>
+      const data = await response.json();
+      // console.log(data);
       //check if the data is ok by success property
-      if (data?.success) {
+      if (response.ok && data.success) {
         //notify message
         notify("success", data.message);
 
+        // dispatch login action>>
+        // dispatch(login({ token: data.data?.token, user: data.data?.user }));
+
         //if the data is ok, redirect to the login page
-        handlePageType();
+        await handlePageType();
       } else {
         //if the data is not ok, show the error message
-        notify("error", data.message);
+        notify("error", "else Register fetch ");
       }
     } catch (error) {
       //if there is an error, show the error message
-      notify("error", "Something went wrong. Please try again later.");
+      notify("error", "catch Register fetch ");
     }
   };
 
-  // };
+
 
   return (
     <>

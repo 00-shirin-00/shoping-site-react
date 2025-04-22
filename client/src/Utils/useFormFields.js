@@ -7,8 +7,9 @@ const useFormFields = () => {
 
   // تابع handleChange برای مدیریت تغییرات در فیلدهای فرم
   const handleChange = (e) => {
-    const { target } = e; // استخراج عنصر هدف از رویداد
-    setFields({
+    const { target } = e; // استخراج عنصر هدف از رویدادconst target = e.target;
+    
+  setFields({
       ...fields, // نگه داشتن مقادیر قبلی فیلدها
       [target.name]: target.value, // به‌روزرسانی مقدار فیلد تغییر یافته
     });

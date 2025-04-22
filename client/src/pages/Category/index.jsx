@@ -25,7 +25,7 @@ export default function Category() {
   
   //map categories
   const categoryList = categories?.map((category) => {
-    console.log(category.image[0]);
+    // console.log(category.image[0]);
    
     return (
       <Card
@@ -36,7 +36,7 @@ export default function Category() {
       />
     );
   });
-  console.log(categories);
+  // console.log(categories);
 
   return (
     <Stack

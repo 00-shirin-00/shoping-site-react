@@ -16,9 +16,10 @@ import { styled } from "@mui/material/styles";
 import useFormFields from "../../../Utils/useFormFields";
 import notify from "../../../Utils/notify";
 
+import { login } from "../../../Store/Slice/AuthSlice";
 
 //redux>>
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // ===============================================================
 
 //themes>>------------------------------------------
@@ -64,12 +65,13 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 // -------------------------------------------------
-export default function login({ handlePageType }) {
+export default function Login({ handlePageType }) {
   const [fields, handleChange] = useFormFields();
 
   //dispatch
   const dispatch = useDispatch();
 
+  //------handle submit func >>------------------
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -81,19 +83,28 @@ export default function login({ handlePageType }) {
         },
         body: JSON.stringify(fields),
       });
+
       const data = await res.json();
+
+
+      // console.log("API Response:", data);
+
+
       //check if the response is ok
       if (data?.success) {
         //dispatch login action
         notify("success", data?.message);
         dispatch(login({ token: data.data.token, user: data.data.user }));
+        // console.log("Token seconde:", data.data.token);
       }
       //handle error
       else {
         notify("error", data?.message);
       }
     } catch (error) {
-      notify("error", error.message || "Something went wrong, again later.");
+      // console.error("Error during registration:", error);
+
+      notify("error", error.message);
     }
   };
 

@@ -5,20 +5,24 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const signup = catchAsync(async (req, res, next) => {
-  const { username = null, password = null ,email=null} = req.body;
+  const { username = null, password = null, email = null } = req.body;
 
-  
+
+
   if (password?.length < 4) {
     return next(new HandleError("must be 4 character at least"));
   }
 
   const hashedPassword = bcryptjs.hashSync(password, 10);
-  await User.create({ username, password: hashedPassword,email });
+  await User.create({ username, password: hashedPassword, email });
 
   res.status(201).json({
     success: true,
     message: "user created successfully",
   });
+
+  console.log("Password:", password);
+  console.log("Hashed:", hashedPassword);
 });
 
 export const signin = catchAsync(async (req, res, next) => {
@@ -32,6 +36,8 @@ export const signin = catchAsync(async (req, res, next) => {
 
   // لاگ‌گذاری رمز عبور هش شده از دیتابیس
   console.log("Hashed Password from DB:", validUser.password);
+
+
 
   const validPassword = bcryptjs.compareSync(password, validUser.password);
 
