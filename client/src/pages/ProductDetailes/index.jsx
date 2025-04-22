@@ -25,7 +25,7 @@ export default function ProductDetails() {
   // quantity
   const cardQuantity =
     useSelector((state) => state.cart.items).filter((e) => e._id == id)[0]
-      ?.quantity || 0; //get quantity from redux
+      ?.cartQuantity || 0; //get quantity from redux
 
   //useEffect>>
   useEffect(() => {

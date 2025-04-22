@@ -23,9 +23,9 @@ const cartSlice = createSlice({
       state.items = state.items.filter((e) => {
         if (e._id == productId) {
           // بررسی اینکه آیا آیتم مورد نظر در سبد وجود دارد
-          e.quantity = e.quantity - 1; // کاهش تعداد آیتم در سبد
+          e.cartQuantity = e.cartQuantity - 1; // کاهش تعداد آیتم در سبد
           state.totalPrice = state.totalPrice - e?.price; // کاهش قیمت کل بر اساس قیمت آیتم
-          if (e.quantity == 0) {
+          if (e.cartQuantity == 0) {
             // اگر تعداد آیتم به صفر رسید، آن را حذف کن
             return false;
           }
@@ -41,14 +41,14 @@ const cartSlice = createSlice({
       state.items = state.items?.map((e) => {
         if (e._id == product._id) {
           // بررسی اینکه آیا محصول قبلاً در سبد وجود دارد
-          e.quantity = e.quantity + 1; // افزایش تعداد آیتم در سبد
+          e.cartQuantity = e.cartQuantity + 1; // افزایش تعداد آیتم در سبد
           add = true; // تنظیم متغیر به true برای نشان دادن اینکه آیتم قبلاً وجود داشته است
         }
         return e; // بازگرداندن آیتم‌های به‌روزرسانی‌شده
       });
       if (!add) {
         // اگر آیتم جدید بود
-        state.items.push({ ...product, quantity: 1 }); // اضافه کردن آیتم به سبد با مقدار اولیه 1
+        state.items.push({ ...product, cartQuantity: 1 }); // اضافه کردن آیتم به سبد با مقدار اولیه 1
       }
     },
   },
