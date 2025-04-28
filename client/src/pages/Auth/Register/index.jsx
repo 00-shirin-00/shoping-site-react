@@ -93,8 +93,7 @@ export default function Register({ handlePageType }) {
         //notify message
         notify("success", data.message);
 
-        // dispatch login action>>
-        // dispatch(login({ token: data.data?.token, user: data.data?.user }));
+     
 
         //if the data is ok, redirect to the login page
         await handlePageType();
