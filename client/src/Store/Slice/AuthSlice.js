@@ -1,6 +1,6 @@
 // وارد کردن تابع createSlice از Redux Toolkit
 import { createSlice } from "@reduxjs/toolkit"; // برای ایجاد یک اسلایس در Redux
-
+// ====================================================
 // تعریف وضعیت اولیه برای احراز هویت
 const initialState = {
   token: null, // مقدار اولیه توکن کاربر
