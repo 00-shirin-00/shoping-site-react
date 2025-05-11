@@ -1,11 +1,13 @@
 // وارد کردن reducer مربوط به احراز هویت
 import authSliceReducer from "./Slice/AuthSlice"; // برای مدیریت وضعیت احراز هویت کاربران
 
+// وارد کردن reducer مربوط به سبد خرید
+import CartSlice from "./Slice/CartSlice"; // برای مدیریت وضعیت سبد خرید
+
+
 // وارد کردن تابع configureStore از Redux Toolkit
 import { configureStore } from "@reduxjs/toolkit"; // برای پیکربندی و ایجاد استور
 
-// وارد کردن reducer مربوط به سبد خرید
-import CartSlice from "./Slice/CartSlice"; // برای مدیریت وضعیت سبد خرید
 
 // ایجاد استور Redux با استفاده از configureStore
 const store = configureStore({
