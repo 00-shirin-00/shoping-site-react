@@ -36,13 +36,14 @@ export default function Navbar() {
   //dispatch
   const dispatch = useDispatch();
 
-  const pages = ["Home", "Products", "Pricing", "Blog"];
+  const pages = ["Home", "products", "category", "about"];
 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+    // console.log(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -62,9 +63,9 @@ export default function Navbar() {
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
-            variant="h6"
+            variant="h6" // استایل
             noWrap
-            component="a"
+            component="a" //کامپوننت نهایی
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
