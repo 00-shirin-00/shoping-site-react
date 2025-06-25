@@ -2,8 +2,8 @@ import React from "react";
 //cssBaseLine
 import { Box, CssBaseline } from "@mui/material";
 // components
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 //route
 import { Route, Routes, Navigate } from "react-router-dom";
 //redux

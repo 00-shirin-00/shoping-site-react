@@ -9,11 +9,11 @@ export default function Auth() {
   // و شامل فرم‌های ورود و ثبت‌نام می‌باشد.
 
   //states
-  const [pageType, setPageType] = useState("login"); // نوع صفحه (ورود یا ثبت‌نام)
+  const [pageType, setPageType] = useState("login");
 
-  // تابع handlePageType برای تغییر نوع صفحه
+  //handler
   const handlePageType = () => {
-    setPageType(pageType === "login" ? "register" : "login"); // تغییر نوع صفحه به ثبت‌نام یا ورود
+    setPageType(pageType === "login" ? "register" : "login");
   };
 
   return (

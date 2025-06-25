@@ -1,16 +1,13 @@
-// وارد کردن تابع createSlice از Redux Toolkit
-import { createSlice } from "@reduxjs/toolkit"; // برای ایجاد یک اسلایس در Redux
+import { createSlice } from "@reduxjs/toolkit";
 // =======================================================================
-// تعریف وضعیت اولیه برای سبد خرید
 const initialState = {
   items: [], // آرایه‌ای برای ذخیره آیتم‌های موجود در سبد خرید
   totalPrice: 0, // مقدار اولیه قیمت کل سبد خرید
 };
 
-// ایجاد اسلایس سبد خرید با استفاده از createSlice
 const cartSlice = createSlice({
-  name: "cartSlice", // نام اسلایس
-  initialState, // مقدار اولیه وضعیت
+  name: "cartSlice",
+  initialState,
   reducers: {
     // اکشن clear برای خالی کردن سبد خرید
     clear(state) {
@@ -22,11 +19,9 @@ const cartSlice = createSlice({
       const productId = action.payload; // شناسه محصولی که باید حذف شود
       state.items = state.items.filter((e) => {
         if (e._id == productId) {
-          // بررسی اینکه آیا آیتم مورد نظر در سبد وجود دارد
-          e.cartQuantity = e.cartQuantity - 1; // کاهش تعداد آیتم در سبد
+          e.cartQuantity = e.cartQuantity - 1;
           state.totalPrice = state.totalPrice - e?.price; // کاهش قیمت کل بر اساس قیمت آیتم
           if (e.cartQuantity == 0) {
-            // اگر تعداد آیتم به صفر رسید، آن را حذف کن
             return false;
           }
         }

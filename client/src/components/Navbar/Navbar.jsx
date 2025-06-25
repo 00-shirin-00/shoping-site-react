@@ -109,7 +109,6 @@ export default function Navbar() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography sx={{ textAlign: "center" }}>
-                    {" "}
                     <Link
                       to={`/${page.toLowerCase()}`}
                       style={{ textDecoration: "none", color: "inherit" }}

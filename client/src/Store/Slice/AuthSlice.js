@@ -1,16 +1,14 @@
-// وارد کردن تابع createSlice از Redux Toolkit
-import { createSlice } from "@reduxjs/toolkit"; // برای ایجاد یک اسلایس در Redux
+import { createSlice } from "@reduxjs/toolkit";
 // ====================================================
-// تعریف وضعیت اولیه برای احراز هویت
 const initialState = {
-  token: null, // مقدار اولیه توکن کاربر
+  token: null,
   user: null, // مقدار اولیه اطلاعات کاربر
 };
 
-// ایجاد اسلایس احراز هویت با استفاده از createSlice
+// ایجاد اسلایس احراز هویت
 const authSlice = createSlice({
-  name: "authSlice", // نام اسلایس
-  initialState, // مقدار اولیه وضعیت
+  name: "authSlice",
+  initialState,
   reducers: {
     // تعریف اکشن login برای ورود کاربر
     login(state, action) {
@@ -25,7 +23,7 @@ const authSlice = createSlice({
   },
 });
 
-// صادر کردن اکشن‌های login و logout برای استفاده در کامپوننت‌ها
+//  اکشن‌های برای استفاده در کامپوننت‌ها
 export const { login, logout } = authSlice.actions;
 
 // صادر کردن reducer برای استفاده در استور

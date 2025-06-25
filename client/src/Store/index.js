@@ -4,7 +4,6 @@ import authSliceReducer from "./Slice/AuthSlice"; // برای مدیریت وض�
 // وارد کردن reducer مربوط به سبد خرید
 import CartSlice from "./Slice/CartSlice"; // برای مدیریت وضعیت سبد خرید
 
-// وارد کردن تابع configureStore از Redux Toolkit
 import { configureStore } from "@reduxjs/toolkit"; // برای پیکربندی و ایجاد استور
 
 // ============================================
@@ -15,6 +14,7 @@ const store = configureStore({
     cart: CartSlice, // اضافه کردن reducer سبد خرید به استور
   },
   devTools: process.env.NODE_ENV !== "production",
+  
 });
 
-export default store; // صادر کردن استور برای استفاده در فایل‌های دیگر
+export default store;

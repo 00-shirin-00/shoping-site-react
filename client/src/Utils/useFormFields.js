@@ -1,21 +1,19 @@
-// وارد کردن هوک useState از ری‌اکت
-import { useState } from "react"; // برای مدیریت وضعیت فرم
-
-// تعریف هوک سفارشی useFormFields
+import { useState } from "react";
+//custom hook >>
 const useFormFields = () => {
-  const [fields, setFields] = useState({}); // تعریف وضعیت اولیه برای فیلدهای فرم
+  const [fields, setFields] = useState({});
 
-  // تابع handleChange برای مدیریت تغییرات در فیلدهای فرم
   const handleChange = (e) => {
     const { target } = e; // استخراج عنصر هدف از رویدادconst target = e.target;
     
   setFields({
-      ...fields, // نگه داشتن مقادیر قبلی فیلدها
+    ...fields,
       [target.name]: target.value, // به‌روزرسانی مقدار فیلد تغییر یافته
     });
   };
 
-  return [fields, handleChange]; // بازگرداندن وضعیت فیلدها و تابع مدیریت تغییرات
+  return [fields, handleChange];
 };
 
-export default useFormFields; // صادر کردن هوک برای استفاده در فایل‌های دیگر
+export default useFormFields;
+

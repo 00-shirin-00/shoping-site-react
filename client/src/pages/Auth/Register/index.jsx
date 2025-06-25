@@ -71,8 +71,9 @@ export default function Register({ handlePageType }) {
   // ------------------------------------------------------------------
   //handlePageType is a function that is passed as a prop to the Register component. It is used to switch between the login and register pages.
   const handleSubmit = async (event) => {
-    event.preventDefault(); //نرم خصوصیتی مخصوص به فرم است که از ارسال فرم جلوگیری میکند
+    event.preventDefault(); 
 
+    
     //fetching data from the API >>>>>
     try {
       const response = await fetch(
