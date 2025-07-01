@@ -121,6 +121,7 @@ export default function LastProduct() {
       <Box sx={{ width: "100%", height: "85%" }} >
         {sliders?.length > 0 ? (
           <Swiper
+          
             slidesPerView={3}
             spaceBetween={30}
             loop={sliders.length > 3}

@@ -1,13 +1,14 @@
+.lastProduct{   
+   /* background: rgb(0, 255, 106); */
+   padding: 10px;
 
-.lastProduct.swiper {
-  width: 100%;
-  height: 100%;
 }
 
 .lastProduct.swiper .swiper-slide {
     width: 100%;
     height: 100%;
-    
+    /* background: rgb(0, 255, 106); */
+
   }
   
   .lastProduct.swiper .swiper-slide img {
@@ -18,9 +19,10 @@
   }
   
   .lastProduct.swiper {
+    width: 100%;
+    height: 100%;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
   /* background: red; */
 
 }
@@ -29,10 +31,3 @@
   width: 20px;
 }
 
-/* .swiper-pagination {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 10px; 
-  margin-top: 0;
-} */
