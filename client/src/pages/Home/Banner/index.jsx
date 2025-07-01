@@ -39,7 +39,7 @@ export default function Banner() {
   ));
 
   return (
-    <Box sx={{ width: "100%", height: "80vh" }}>
+    <Box sx={{ width: "100%",minWidth:"500px", height: "95vh" }} mt={6}>
       {sliders?.length > 0 ? (
         <Swiper
           slidesPerView={1}

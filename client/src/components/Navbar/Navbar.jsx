@@ -36,7 +36,7 @@ export default function Navbar() {
   //dispatch
   const dispatch = useDispatch();
 
-  const pages = ["Home", "products", "category", "about"];
+  const pages = ["Home", "products", "category"];
 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -58,7 +58,7 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -171,14 +171,14 @@ export default function Navbar() {
               </Link>
             </Button>
 
-            <Button
+            {/* <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
               <Link to={"/about"} style={{ color: "white" }}>
                 About
               </Link>
-            </Button>
+            </Button> */}
 
             {!token ? (
               <Button
