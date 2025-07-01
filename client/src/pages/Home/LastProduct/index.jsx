@@ -82,7 +82,7 @@ export default function LastProduct() {
             alignItems: "center",
           }}
         >
-          <Typography px={"10px"} variant="h4" component={"h2"}>
+          <Typography px={"10px"} variant="h5" component={"h2"}>
             {e.name}
           </Typography>
           <Typography px={"10px"} variant="body2">
