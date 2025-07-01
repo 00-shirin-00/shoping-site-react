@@ -1,3 +1,11 @@
+html, body, #root {
+    height: 100%;
+    min-height: 100vh;
+}
+/* body { */
+    
+    /* background-color: #354f52; */
+/* } */
 a{
     text-decoration: none;
 }

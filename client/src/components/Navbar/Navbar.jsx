@@ -58,7 +58,7 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" sx={{ bgcolor: "#a5a58d" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />

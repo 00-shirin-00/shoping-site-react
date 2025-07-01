@@ -41,10 +41,11 @@ export default function LastProduct() {
 
   //card items >>
   const items = sliders?.map((e, index) => (
-    <SwiperSlide key={index} >
+    <SwiperSlide key={index}>
       <Box
         sx={{
-          boxShadow: "1px 1px 5px 2px #414562",
+          boxShadow: "2px -1px 6px 0 #353639",
+         border: "2px solid #4a4a4f",
           width: "100%",
           height: "90%",
           minHeight: "300px",
@@ -109,19 +110,18 @@ export default function LastProduct() {
         width: "80%",
         minWidth: "500px",
         height: "550px",
-        bgcolor: "#81b29a",
+        bgcolor: "#4a5736",
         padding: "20px",
         margin: "50px auto",
-        border: "1px solid #3D405B",
+        border: "1px solid #6b6c74",
       }}
     >
-      <Typography align="center" variant="h2" mb={"10px"} color={"#414562"}>
+      <Typography align="center" variant="h2" mb={"10px"} color={"#181a26"} sx={{textShadow: "1px 1px 2px #6b6c74"}}>
         Last Products
       </Typography>
-      <Box sx={{ width: "100%", height: "85%" }} >
+      <Box sx={{ width: "100%", height: "85%" }}>
         {sliders?.length > 0 ? (
           <Swiper
-          
             slidesPerView={3}
             spaceBetween={30}
             loop={sliders.length > 3}
