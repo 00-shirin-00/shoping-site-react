@@ -29,7 +29,15 @@ export default function App() {
       {/* CssBaseline for Normalization */}
       <CssBaseline />
       <Navbar />
-      <Box minHeight={"90vh"} bgcolor={"#152024"}>
+      <Box
+        sx={{
+          minHeight: "100vh",
+          width: "100%",
+          minWidth: "0",
+          maxWidth: "100%",
+          bgcolor: "#152024",
+        }}
+      >
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

@@ -26,15 +26,23 @@ export default function Cart() {
     return (
       <TableRow
         key={index}
-        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+        sx={
+          {
+            // width: "100%",
+            // height: "100px",
+            // borderBottom: "1px solid #ccc",
+            // "td": { border: 1},
+          }
+        }
+        // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
-        <TableCell align="center">{index+1}</TableCell>
+        <TableCell align="center">{index + 1}</TableCell>
         <TableCell align="center">{item.name}</TableCell>
         <TableCell align="center">
           <img
             style={{
-              width: "80px",
-              height: "80px",
+              width: "50px",
+              height: "50px",
               objectFit: "cover",
             }}
             src={import.meta.env.VITE_BASE_URL + item.images[0]}
@@ -61,11 +69,45 @@ export default function Cart() {
   return (
     <>
       {items.length > 0 ? (
-        <Box>
-          <TableContainer component={Paper}>
-            <Table sx={{ Width: "90%" }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
+        <Box
+          sx={{
+            width: "100%",
+            // minHeight: "100vh",
+            border: "1px solid #ccc",
+            padding: "20px",
+            marginTop: { xs: 6, sm: 7, md: 9 },
+
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+
+            gap: "20px",
+          }}
+        >
+          <Typography
+            variant="h4"
+            component="h4"
+            sx={{
+              color: "#e9c46a",
+              fontWeight: "bold",
+            }}
+          >
+            Your Cart
+          </Typography>
+          <TableContainer
+            component={Paper}
+            sx={{
+              width: "100%",
+              maxWidth: "1000px",
+              margin: "0 auto",
+              bgcolor: "#3f9288",
+              overflowX: "auto",
+            }}
+          >
+            <Table sx={{ width: "100%" }} aria-label="simple table">
+              <TableHead sx={{ bgcolor: "#e9c46a", width: "100%" }}>
+                <TableRow sx={{ width: "100%" }}>
                   <TableCell align="center">ID</TableCell>
                   <TableCell align="center">Name</TableCell>
                   <TableCell align="center">Image</TableCell>
@@ -83,27 +125,39 @@ export default function Cart() {
                   Total Price
                 </TableCell>
                 <TableCell align="center">${totalPrice}</TableCell>
-                <TableCell align="center"></TableCell>
+                {/* <TableCell align="center"></TableCell> */}
               </TableRow>
             </Table>
           </TableContainer>
+
+          {/* --- clear btn --- */}
           <Button
             variant="contained"
-            color="error"
+            sx={{
+              bgcolor: "#e76f51",
+            }}
             onClick={() => dispatch(clear())}
           >
-         npm
             clear cart
           </Button>
         </Box>
       ) : (
-        <Typography
-          variant="h4"
-          component="h2"
-          sx={{ textAlign: "center", marginTop: "20px" }}
+        <Box
+          sx={{
+            marginTop: { xs: 6, sm: 8, md: 9 },
+            width: "100%",
+            minHeight: "50vh",
+            bgcolor: "#3f9288",
+
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          Your cart is empty
-        </Typography>
+          <Typography variant="h2" component="h2" sx={{ color: "white" }}>
+            Your cart is empty
+          </Typography>
+        </Box>
       )}
     </>
   );

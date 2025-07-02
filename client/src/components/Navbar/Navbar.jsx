@@ -36,18 +36,24 @@ export default function Navbar() {
   //dispatch
   const dispatch = useDispatch();
 
+  //menu items hamburger 
   const pages = ["Home", "products", "category"];
 
+  //states
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
     // console.log(event.currentTarget);
   };
+
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -56,7 +62,7 @@ export default function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+// ===========================================================
   return (
     <AppBar position="fixed" sx={{ bgcolor: "#a5a58d" }}>
       <Container maxWidth="xl">
@@ -91,6 +97,8 @@ export default function Navbar() {
             >
               <MenuIcon />
             </IconButton>
+
+            
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -134,18 +142,21 @@ export default function Navbar() {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "red",
               textDecoration: "none",
             }}
           >
             E-Commerce
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+
+
+
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" },border: "1px solid red" }}>
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              <Link to={"/"} style={{ color: "white" }}>
+              <Link to={"/"} style={{ color: "red" }}>
                 Home
               </Link>
             </Button>
@@ -180,6 +191,8 @@ export default function Navbar() {
               </Link>
             </Button> */}
 
+            
+            {/* --- auth ---- */}
             {!token ? (
               <Button
                 onClick={handleCloseNavMenu}
@@ -200,6 +213,8 @@ export default function Navbar() {
               </Button>
             )}
           </Box>
+
+          {/* --- cart icon --- */}
           <Box>
             <Link to={"/cart"}>
               <Badge color="secondary" badgeContent={cartQuantoty}>
@@ -207,6 +222,8 @@ export default function Navbar() {
               </Badge>
             </Link>
           </Box>
+
+          
         </Toolbar>
       </Container>
     </AppBar>
