@@ -98,7 +98,6 @@ export default function Navbar() {
               <MenuIcon />
             </IconButton>
 
-            
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -149,9 +148,13 @@ export default function Navbar() {
             E-Commerce
           </Typography>
 
-
-
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" },border: "1px solid red" }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              border: "1px solid red",
+            }}
+          >
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
@@ -191,7 +194,6 @@ export default function Navbar() {
               </Link>
             </Button> */}
 
-            
             {/* --- auth ---- */}
             {!token ? (
               <Button
@@ -217,13 +219,20 @@ export default function Navbar() {
           {/* --- cart icon --- */}
           <Box>
             <Link to={"/cart"}>
-              <Badge color="secondary" badgeContent={cartQuantoty}>
+              <Badge
+                sx={{
+                  //for badge style
+                  "& .MuiBadge-badge": {
+                    backgroundColor: "#264653",
+                    color: "#fff",
+                  },
+                }}
+                badgeContent={cartQuantoty}
+              >
                 <ShoppingCartIcon sx={{ color: "white !important" }} />
               </Badge>
             </Link>
           </Box>
-
-          
         </Toolbar>
       </Container>
     </AppBar>
