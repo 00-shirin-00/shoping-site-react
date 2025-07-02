@@ -14,7 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import BedroomBabyIcon from "@mui/icons-material/BedroomBaby";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@mui/material";
 
@@ -67,7 +67,9 @@ export default function Navbar() {
     <AppBar position="fixed" sx={{ bgcolor: "#a5a58d" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <BedroomBabyIcon
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+          />
           <Typography
             variant="h6" // استایل
             noWrap
@@ -85,7 +87,7 @@ export default function Navbar() {
           >
             E-Commerce
           </Typography>
-
+          {/* --- Responsive Menu --- */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -114,6 +116,7 @@ export default function Navbar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
             >
+              {/* --- Menu Items --- */}
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography sx={{ textAlign: "center" }}>
@@ -128,7 +131,11 @@ export default function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <BedroomBabyIcon
+            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+          />
+
+          {/* --- Logo in small size --- */}
           <Typography
             variant="h5"
             noWrap
@@ -141,25 +148,27 @@ export default function Navbar() {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "red",
+              color: "inherit",
               textDecoration: "none",
             }}
           >
             E-Commerce
           </Typography>
 
+          {/* --- Avatar and User Menu in big size--- */}
           <Box
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
-              border: "1px solid red",
+              // border: "1px solid red",
             }}
           >
+            {/* --- nav item in big size --- */}
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              <Link to={"/"} style={{ color: "red" }}>
+              <Link to={"/"} style={{ color: "inherit" }}>
                 Home
               </Link>
             </Button>
