@@ -74,6 +74,7 @@ export default function ProductDetails() {
               overflow: "hidden",
               width: { xs: "90%", md: "80%" },
               height: "80vh",
+           
               gap: "15px",
               bgcolor: "#444236",
               p: 1,
@@ -84,8 +85,8 @@ export default function ProductDetails() {
             {/* --------------------- باکس تصویر-------------------------- */}
             <Box
               sx={{
-                width: { xs: "100%", md: "60%" },
-                height: { xs: "55%", md: "100%" },
+                width: { xs: "100%",md: "50%" },
+                height: { xs: "55%",sm:"50%" ,md: "100%" },
                 borderRadius: { xs: "20px 20px 0 0", md: "20px 0 0 20px" },
                 overflow: "hidden",
               }}
@@ -112,9 +113,9 @@ export default function ProductDetails() {
               justifyContent={"space-between"}
               gap={"10px "}
               sx={{
-                p: { xs: "10px", md: "20px" },
+                // p: { xs: "10px", md: "20px" },
                 width: { xs: "100%", md: "35%" },
-                height: { xs: "40%", md: "100%" },
+                height: { xs: "40%",sm:"45%", md: "100%" },
               }}
             >
               {/*------ عنوان و توضیحات  ------ */}

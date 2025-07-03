@@ -54,12 +54,29 @@ export default function Cart() {
         <TableCell align="center">{item.price * item.cartQuantity}</TableCell>
         <TableCell align="center">
           <Button
+            sx={{
+              width: "80px",
+              height: "30px",
+              bgcolor: "#E07A5F",
+              color: "inherit",
+              margin: "0 5px",
+            }}
             variant="contained"
             onClick={() => dispatch(remove(item._id))}
           >
             -
           </Button>
-          <Button variant="outlined" onClick={() => dispatch(add(item))}>
+          <Button
+            sx={{
+              width: "80px",
+              height: "30px",
+              bgcolor: "#E07A5F",
+              color: "inherit",
+              margin: "0 5px",
+            }}
+            variant="contained"
+            onClick={() => dispatch(add(item))}
+          >
             +
           </Button>
         </TableCell>
