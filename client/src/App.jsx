@@ -36,6 +36,7 @@ export default function App() {
           minWidth: "0",
           maxWidth: "100%",
           bgcolor: "#152024",
+          pt: "50px",
         }}
       >
         <Routes>

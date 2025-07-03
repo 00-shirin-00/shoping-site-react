@@ -27,20 +27,24 @@ export default function Products() {
   //state for price
   const [price, setPrice] = useState([0, 1000]);
 
+  //state for products
   const [products, setProducts] = useState();
 
+  //handle for price
   const handleChange = (event, newValue) => {
     setPrice(newValue);
   };
 
-  //state for sort
+  //state for sort date
+  //new => old
   const [sort, setSort] = useState("-createdAt");
 
-  const handleSort = (event) => {
+  //handle for sort
+    const handleSort = (event) => {
     setSort(event.target.value);
   };
 
-  // fetch for price
+  // fetch products
   useEffect(() => {
     (async () => {
       try {
@@ -77,15 +81,20 @@ export default function Products() {
   return (
     <>
       <Stack
-        mt={"20px"}
-        flexDirection={"row"}
-        justifyContent={"space-between"}
-        p={2}
+        mt={"40px"}
+        justifyContent={"space-evenly"}
+        p={5}
+        sx={{
+          bgcolor: "#f4f1de",
+          borderRadius: "10px",
+          border: "3px solid #bc6c25",
+          flexDirection: { xs: "column", sm: "row" },
+        }}
       >
         {/* for price */}
-        <Box sx={{ width: 300, mt: "50px" }}>
+        <Box sx={{ width: { xs: "90%", sm: "40%" } }}>
           <Typography
-            sx={{ mb: 2, fontSize: "20px", fontWeight: "bold", color: "#333" }}
+            sx={{ mb: 1, fontSize: "20px", fontWeight: "bold", color: "#333" }}
           >
             Price
           </Typography>
@@ -98,18 +107,56 @@ export default function Products() {
             onChange={handleChange}
             min={0}
             max={1000}
+            sx={{
+              color: "#bc6c25", // رنگ اصلی اسلایدر (track و thumb)
+              "& .MuiSlider-thumb": {
+                backgroundColor: "#086f31", // رنگ دایره
+              },
+              "& .MuiSlider-track": {
+                backgroundColor: "#bc6c25", // رنگ خط پر شده
+              },
+              "& .MuiSlider-rail": {
+                backgroundColor: "#8da593", // رنگ خط خالی
+              },
+            }}
           />
         </Box>
         {/* for sort */}
-        <Box sx={{ width: 300, mt: "50px" }}>
-          <FormControl sx={{ m: 1, width: "100%" }}>
-            <InputLabel id="sort">Sort By</InputLabel>
+        <Box sx={{ width: { xs: "90%", sm: "30%" }, mt: "20px" }}>
+          <FormControl sx={{ width: "100%" }}>
+            <InputLabel
+              id="sort"
+              sx={{
+                fontSize: "1rem",
+                fontWeight: 600,
+                letterSpacing: "0.5px",
+                "&.Mui-focused": {
+                  color: "#bc6c25",
+                  fontWeight: "700",
+                  letterSpacing: "1px",
+                },
+              }}
+            >
+              Sort By
+            </InputLabel>
             <Select
               id="sort"
               value={sort}
               onChange={handleSort}
               autoWidth
               label="Sort"
+              sx={{
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#bc6c25", // رنگ خط دور در حالت عادی
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#e76f51", // رنگ خط دور هنگام فوکوس
+                  borderWidth: 2,
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "#bc6c25",
+                },
+              }}
             >
               <MenuItem value={"-createdAt"}>Newest</MenuItem>
               <MenuItem value={"-price"}>Highest price</MenuItem>
@@ -118,6 +165,8 @@ export default function Products() {
           </FormControl>
         </Box>
       </Stack>
+
+      {/* --- cart items --- */}
       <Stack
         flexDirection={"row"}
         justifyContent={"center"}

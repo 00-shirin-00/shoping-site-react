@@ -40,11 +40,11 @@ export default function Category() {
 
   return (
     <Stack
-      mt={'50px'}
+      p={"60px"}
       flexDirection="row"
       flexWrap={"wrap"}
       justifyContent="center"
-      gap={2}
+      gap={4}
     >
       {categoryList}
     </Stack>
