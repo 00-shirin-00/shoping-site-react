@@ -22,7 +22,7 @@ import { login } from "../../../Store/Slice/AuthSlice";
 import { useDispatch, useSelector } from "react-redux";
 // ===============================================================
 
-//themes>>------------------------------------------
+//themes mui>>------------------------------------------
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -92,8 +92,8 @@ export default function Login({ handlePageType }) {
 
       //check if the response is ok
       if (data?.success) {
-        //dispatch login action
         notify("success", data?.message);
+        //dispatch login action
         dispatch(login({ token: data.data.token, user: data.data.user }));
         // console.log("Token seconde:", data.data.token);
       }
@@ -103,7 +103,6 @@ export default function Login({ handlePageType }) {
       }
     } catch (error) {
       // console.error("Error during registration:", error);
-
       notify("error", error.message);
     }
   };
@@ -182,7 +181,7 @@ export default function Login({ handlePageType }) {
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Typography sx={{ textAlign: "center" }}>
-              Don&apos;t have an account?{" "}
+              Don&apos;t have an account?
               <Button onClick={handlePageType}>Register</Button>
             </Typography>
           </Box>

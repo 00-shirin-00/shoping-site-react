@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 const notify = (type, message) => {
   toast[type](message, {
     // نوع اعلان و پیام را مشخص می‌کند
-    duration: 5000, // مدت زمان نمایش اعلان
+    duration: 5000,
     position: "top-center",
   });
 };

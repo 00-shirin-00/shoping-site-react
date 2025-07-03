@@ -43,7 +43,8 @@ export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-
+  // handlers ----------------------------------
+  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
     // console.log(event.currentTarget);

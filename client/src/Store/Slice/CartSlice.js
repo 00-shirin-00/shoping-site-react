@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 // =======================================================================
 const initialState = {
-  items: [], // آرایه‌ای برای ذخیره آیتم‌های موجود در سبد خرید
-  totalPrice: 0, // مقدار اولیه قیمت کل سبد خرید
+  items: [],
+  totalPrice: 0,
 };
 
 const cartSlice = createSlice({
@@ -11,8 +11,8 @@ const cartSlice = createSlice({
   reducers: {
     // اکشن clear برای خالی کردن سبد خرید
     clear(state) {
-      state.items = []; // خالی کردن آرایه آیتم‌ها
-      state.totalPrice = 0; // تنظیم قیمت کل به صفر
+      state.items = [];
+      state.totalPrice = 0;
     },
     // اکشن remove برای حذف یک آیتم از سبد خرید
     remove(state, action) {
@@ -34,12 +34,12 @@ const cartSlice = createSlice({
       const product = action.payload; // محصولی که باید اضافه شود
       state.totalPrice = state.totalPrice + product?.price; // افزایش قیمت کل بر اساس قیمت محصول
       state.items = state.items?.map((e) => {
+        // بررسی اینکه آیا محصول قبلاً در سبد وجود دارد
         if (e._id == product._id) {
-          // بررسی اینکه آیا محصول قبلاً در سبد وجود دارد
           e.cartQuantity = e.cartQuantity + 1; // افزایش تعداد آیتم در سبد
           add = true; // تنظیم متغیر به true برای نشان دادن اینکه آیتم قبلاً وجود داشته است
         }
-        return e; // بازگرداندن آیتم‌های به‌روزرسانی‌شده
+        return e;
       });
       if (!add) {
         // اگر آیتم جدید بود
@@ -49,8 +49,6 @@ const cartSlice = createSlice({
   },
 });
 
-// صادر کردن اکشن‌های add، remove و clear برای استفاده در کامپوننت‌ها
 export const { add, remove, clear } = cartSlice.actions;
 
-// صادر کردن reducer برای استفاده در استور
 export default cartSlice.reducer;
